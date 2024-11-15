@@ -91,6 +91,8 @@ class MiniModels():
     
     def predict(self, X):
         predictions = []
+        if self.n_splits == 1:
+            return self.model.predict(X)
         for _, row in X.iterrows():
             time_left = row['time_left']
             selected_models = self.select_trio(time_left)
